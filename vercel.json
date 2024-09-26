@@ -4,7 +4,13 @@
     "functions": {
         "api/*.php": { "runtime": "vercel-php@0.6.1" }
     },
-    "rewrites": [{ "source": "/api/(.*)", "destination": "/api/index.php" }],
+    "rewrites": [
+        { "source": "/api/(.*)", "destination": "/api/index.php" },
+        {
+            "source": "/sanctum/csrf-cookie",
+            "destination": "/api/index.php/sanctum/csrf-cookie"
+        }
+    ],
     "headers": [
         {
             "source": "/api/(.*)",
@@ -12,20 +18,39 @@
                 { "key": "Access-Control-Allow-Origin", "value": "*" },
                 {
                     "key": "Access-Control-Allow-Methods",
-                    "value": "GET, POST, PUT, DELETE"
+                    "value": "GET, POST, PUT, DELETE, OPTIONS"
                 },
                 {
                     "key": "Access-Control-Allow-Headers",
                     "value": "X-Requested-With, Content-Type, Authorization"
-                }
+                },
+                { "key": "Access-Control-Allow-Credentials", "value": "true" }
+            ]
+        },
+        {
+            "source": "/sanctum/csrf-cookie",
+            "headers": [
+                { "key": "Access-Control-Allow-Origin", "value": "*" },
+                {
+                    "key": "Access-Control-Allow-Methods",
+                    "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                    "key": "Access-Control-Allow-Headers",
+                    "value": "X-Requested-With, Content-Type, Authorization"
+                },
+                { "key": "Access-Control-Allow-Credentials", "value": "true" }
             ]
         }
     ],
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
-        "APP_URL": "https://yourproductionurl.com",
+        "APP_URL": "https://your-app-name.vercel.app",
         "APP_KEY": "base64:dEauI8Ww03yOx9G26fqLAsenEXGZoueZfMBzHOPnTRs=",
+
+        "SESSION_DOMAIN": ".vercel.app",
+        "SANCTUM_STATEFUL_DOMAINS": "your-app-name.vercel.app",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
