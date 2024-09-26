@@ -37,6 +37,6 @@ Route::get('/send-test-mail', function () {
     return 'Email sent!';
 });
 
-Route::resource('userss', UserController::class);
+Route::get('/userss2', [UserController::class, 'index']);
 
 // require __DIR__ . '/auth.php';
