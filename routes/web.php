@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
-Route::resource('users', UserController::class);
+// Route::resource('users', UserController::class);
+Route::get('/userss2', [UserController::class, 'index']);

@@ -15,15 +15,12 @@
         |
         */
 
-        'paths' => ['*'],
+        'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
         'allowed_methods' => ['*'],
 
-        'allowed_origins' => [
-            'http://localhost:3000', // replace with your frontend URL
-            'http://sakny.rf.gd/',
-            'http://yourdomain.com',
-        ],
+        'allowed_origins' => ["*", "http://localhost:3000"],
+
         'allowed_origins_patterns' => [],
 
         'allowed_headers' => ['*'],
@@ -32,6 +29,6 @@
 
         'max_age' => 0,
 
-        'supports_credentials' => true,
+        'supports_credentials' => false,
 
     ];
