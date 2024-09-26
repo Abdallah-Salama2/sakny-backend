@@ -1,18 +1,31 @@
 {
     "version": 2,
-      "framework": null,
+    "framework": null,
     "functions": {
         "api/*.php": { "runtime": "vercel-php@0.6.1" }
     },
-    "routes": [{
-        "src": "/(.*)",
-        "dest": "/api/index.php"
-    }],
+    "rewrites": [{ "source": "/api/(.*)", "destination": "/api/index.php" }],
+    "headers": [
+        {
+            "source": "/api/(.*)",
+            "headers": [
+                { "key": "Access-Control-Allow-Origin", "value": "*" },
+                {
+                    "key": "Access-Control-Allow-Methods",
+                    "value": "GET, POST, PUT, DELETE"
+                },
+                {
+                    "key": "Access-Control-Allow-Headers",
+                    "value": "X-Requested-With, Content-Type, Authorization"
+                }
+            ]
+        }
+    ],
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "https://yourproductionurl.com",
-        "APP_KEY":"base64:dEauI8Ww03yOx9G26fqLAsenEXGZoueZfMBzHOPnTRs=",
+        "APP_KEY": "base64:dEauI8Ww03yOx9G26fqLAsenEXGZoueZfMBzHOPnTRs=",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
