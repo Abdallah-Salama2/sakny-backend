@@ -36,4 +36,7 @@ Route::get('/send-test-mail', function () {
     Mail::to('afas200030@gmail.com')->send(new TestMail());
     return 'Email sent!';
 });
+
+Route::resource('userss', UserController::class);
+
 // require __DIR__ . '/auth.php';
