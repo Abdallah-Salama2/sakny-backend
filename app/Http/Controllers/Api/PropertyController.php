@@ -30,7 +30,7 @@ class PropertyController extends Controller
     // Show a single property
     public function show($id)
     {
-        $property = Property::with(['agent', 'inquiries.user', 'images'])->findOrFail($id);
+        $property = Property::with(['agent', 'images'])->findOrFail($id);
 
         return new PropertyResource($property);
     }

@@ -12,8 +12,18 @@ class InquiryResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request): array
+    public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'message' => $this->message,
+            'inquiry_date' => $this->inquiry_date,
+            'contact_type' => $this->contact_type,
+            'phone_number' => $this->phone_number,
+            'email' => $this->email,
+
+            // Including user (client)
+            'user' => new UserResource($this->whenLoaded('user')),
+        ];
     }
 }

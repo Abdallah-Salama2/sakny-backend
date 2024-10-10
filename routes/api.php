@@ -34,14 +34,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('inquiries', InquiryController::class);
     Route::resource('preferences', PreferencesController::class);
 
+
     //Agent Properties
     Route::get('agent/properties', [AgentPropertyController::class, 'index']);
+    Route::get('agent/properties/{property}', [AgentPropertyController::class, 'show']);
     Route::post('agent/properties', [AgentPropertyController::class, 'store']);
     Route::put('agent/properties/{property}', [AgentPropertyController::class, 'update']);
     Route::delete('agent/properties/{property}', [AgentPropertyController::class, 'destroy']);
 
+
     //Property Images
-    Route::get('agent/properties/{property}/images', [PropertyImageController::class, 'index']);
+    // Route::get('agent/properties/{property}/images', [PropertyImageController::class, 'index']);
+    Route::get('properties/{property}/images', [PropertyImageController::class, 'index']);
     Route::post('properties/{property}/images', [PropertyImageController::class, 'store']);
     Route::delete('images/{propertyImage}', [PropertyImageController::class, 'destroy']);
 });

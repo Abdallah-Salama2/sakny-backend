@@ -23,9 +23,9 @@ class Inquiry extends Model
     ];
 
     // An inquiry belongs to a client
-    public function client()
+    public function user()
     {
-        return $this->belongsTo(Client::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // An inquiry belongs to a property
