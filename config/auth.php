@@ -44,6 +44,10 @@ return [
             'driver' => 'sanctum',
             'provider' => 'users',
         ],
+        'agent' => [
+            'driver' => 'sanctum',  // Use Sanctum for API tokens
+            'provider' => 'agents',  // Use the Agent model for agents
+        ],
     ],
 
     /*
@@ -67,6 +71,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'agents' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Agent::class,  // Agent uses the Agent model
         ],
 
         // 'users' => [
@@ -98,6 +106,12 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'agents' => [
+            'provider' => 'agents',
+            'table' => 'password_reset_tokens',  // Can reuse the same table or create a separate one for agents
             'expire' => 60,
             'throttle' => 60,
         ],

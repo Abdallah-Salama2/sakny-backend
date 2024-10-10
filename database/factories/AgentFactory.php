@@ -14,24 +14,24 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 final class AgentFactory extends Factory
 {
     /**
-    * The name of the factory's corresponding model.
-    *
-    * @var string
-    */
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
     protected $model = Agent::class;
 
     /**
-    * Define the model's default state.
-    *
-    * @return array
-    */
+     * Define the model's default state.
+     *
+     * @return array
+     */
     public function definition(): array
     {
         return [
             'name' => fake()->name,
             'email' => fake()->safeEmail,
             'phone' => fake()->phoneNumber,
-            'password' => bcrypt(fake()->password),
+            'password' => bcrypt("123456789"),
             'remember_token' => Str::random(10),
         ];
     }

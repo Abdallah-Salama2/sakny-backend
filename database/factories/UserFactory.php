@@ -14,17 +14,17 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 final class UserFactory extends Factory
 {
     /**
-    * The name of the factory's corresponding model.
-    *
-    * @var string
-    */
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
     protected $model = User::class;
 
     /**
-    * Define the model's default state.
-    *
-    * @return array
-    */
+     * Define the model's default state.
+     *
+     * @return array
+     */
     public function definition(): array
     {
         return [
@@ -32,7 +32,7 @@ final class UserFactory extends Factory
             'email' => fake()->safeEmail,
             'phone_number' => fake()->phoneNumber,
             'email_verified_at' => fake()->optional()->datetime(),
-            'password' => bcrypt(fake()->password),
+            'password' => bcrypt("12345678"),
             'remember_token' => Str::random(10),
         ];
     }

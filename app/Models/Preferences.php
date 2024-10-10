@@ -12,13 +12,15 @@ class Preferences extends Model
     protected $guarded = [];
 
 
-    public function client()
+    public function user()
     {
-        return $this->belongsTo(Client::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function property()
     {
         return $this->belongsTo(Property::class);
     }
+
+    protected $table = 'preferences';
 }

@@ -14,18 +14,21 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->foreignId('by_agent_id')->nullable()->constrained('agents')->onDelete('cascade');
+            $table->string('title');
+            $table->text('description');
             $table->string('city');
-            $table->string('state');
             $table->string('address');
             $table->decimal('latitude', 10, 7)->nullable(); // Precision for latitude (max 90)
             $table->decimal('longitude', 10, 7)->nullable(); // Precision for longitude (max 180)
-            $table->string('title');
-            $table->text('description');
-            $table->string('image_url');
+            $table->unsignedTinyInteger('beds');
+            $table->unsignedTinyInteger('baths');
+            $table->unsignedSmallInteger('area');
             $table->date('property_date');
             $table->decimal('price', 10, 2);
             $table->string('status');
             $table->string('type');
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }

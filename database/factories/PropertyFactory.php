@@ -13,33 +13,35 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 final class PropertyFactory extends Factory
 {
     /**
-    * The name of the factory's corresponding model.
-    *
-    * @var string
-    */
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
     protected $model = Property::class;
 
     /**
-    * Define the model's default state.
-    *
-    * @return array
-    */
+     * Define the model's default state.
+     *
+     * @return array
+     */
     public function definition(): array
     {
         return [
-            // 'by_agent_id' => \App\Models\Agent::factory(),
+            'by_agent_id' => \App\Models\Agent::factory(),
+            'title' => fake()->title,
+            'description' => fake()->text,
             'city' => fake()->city,
-            'state' => fake()->state,
             'address' => fake()->address,
             'latitude' => fake()->optional()->randomFloat(7, 0, 999),
             'longitude' => fake()->optional()->randomFloat(7, 0, 999),
-            'title' => fake()->title,
-            'description' => fake()->text,
-            'image_url' => fake()->word,
+            'beds' => fake()->randomNumber(1),
+            'baths' => fake()->randomNumber(1),
+            'area' => fake()->numberBetween(1, 200), // Set a realistic range for the area
             'property_date' => fake()->date(),
             'price' => fake()->randomFloat(2, 0, 99999999),
             'status' => fake()->word,
             'type' => fake()->word,
+            'deleted_at' => fake()->optional()->datetime(),
         ];
     }
 }

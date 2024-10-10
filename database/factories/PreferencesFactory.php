@@ -27,7 +27,7 @@ final class PreferencesFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => \App\Models\Client::factory(),
+            'user_id' => \App\Models\User::factory(),
             'property_id' => \App\Models\Property::factory(),
         ];
     }

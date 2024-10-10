@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Api\AgentController;
+use App\Http\Controllers\Api\AgentPropertyController;
 use App\Http\Controllers\Api\InquiryController;
 use App\Http\Controllers\Api\PreferencesController;
 use App\Http\Controllers\Api\PropertyController;
+use App\Http\Controllers\Api\PropertyImageController;
 use App\Http\Controllers\Api\UserController;
 use App\Mail\testmail;
 use Illuminate\Http\Request;
@@ -31,6 +33,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('properties', PropertyController::class);
     Route::resource('inquiries', InquiryController::class);
     Route::resource('preferences', PreferencesController::class);
+
+    //Agent Properties
+    Route::get('agent/properties', [AgentPropertyController::class, 'index']);
+    Route::post('agent/properties', [AgentPropertyController::class, 'store']);
+    Route::put('agent/properties/{property}', [AgentPropertyController::class, 'update']);
+    Route::delete('agent/properties/{property}', [AgentPropertyController::class, 'destroy']);
+
+    //Property Images
+    Route::get('agent/properties/{property}/images', [PropertyImageController::class, 'index']);
+    Route::post('properties/{property}/images', [PropertyImageController::class, 'store']);
+    Route::delete('images/{propertyImage}', [PropertyImageController::class, 'destroy']);
 });
 Route::get('/send-test-mail', function () {
     Mail::to('afas200030@gmail.com')->send(new TestMail());
