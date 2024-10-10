@@ -27,7 +27,7 @@ class PropertyResource extends JsonResource
             'type' =>           $this->type,
             'created_at' =>     $this->created_at->toDateTimeString(),
             'updated_at' =>     $this->updated_at->toDateTimeString(),
-
+            'preview_image_url' => $this->images->first(),
             // Relationships
             'agent' => new AgentResource($this->whenLoaded('agent')),
             'images' => PropertyImageResource::collection($this->whenLoaded('images')),
