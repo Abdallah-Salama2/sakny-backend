@@ -13,18 +13,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create 5 agents only
-        $agents = \App\Models\Agent::factory(5)->create();
+        $agents = \App\Models\Agent::factory(3)->create();
 
         // Create 10 users
         $clients = \App\Models\User::factory(10)->create();
+        $this->call([
+            PropertySeeder::class,
+            PropertyImageSeeder::class,
+        ]);
 
-        // Create 20 properties and assign each to one of the 5 agents randomly
-        foreach (range(1, 20) as $index) {
-
-            $properties = \App\Models\Property::factory()->create([
-                'by_agent_id' => $agents->random()->id, // Assigns existing agent randomly
-            ]);
-        }
 
         // Create 10 preferences with random user and property assignments
         foreach (range(1, 10) as $index) {

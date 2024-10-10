@@ -20,6 +20,7 @@ class PropertyImage extends Model
 
     public function getSrcAttribute()
     {
-        return asset("storage/{$this->filename}");
+        // return asset("http://127.0.0.1:8000/{$this->filename}");
+        return asset("https://y-sooty-seven.vercel.app/{$this->filename}");
     }
 }
