@@ -31,7 +31,13 @@ Route::resource('properties', PropertyController::class);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('agents', AgentController::class);
-    Route::resource('inquiries', InquiryController::class);
+
+    Route::get('/properties/{property}/inquiries', [InquiryController::class, 'showInquiries']);
+    Route::post('/properties/{property}/inquiries', [InquiryController::class, 'store']);
+    Route::get('/agent/inquiries', [InquiryController::class, 'getAgentPropertiesWithInquiries']);
+    Route::get('/user/inquiries', [InquiryController::class, 'getUserInquiries']);
+    Route::delete('/inquiries/{id}', [InquiryController::class, 'destroy']);
+
     Route::resource('preferences', PreferencesController::class);
     Route::post('preferences/{preference}', [PreferencesController::class, "add"]);
 
