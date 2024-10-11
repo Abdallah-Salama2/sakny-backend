@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\FavoriteScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,6 +12,7 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 class Property extends Model
 {
     use HasFactory;
+    use FavoriteScope;
 
     protected $guarded = [];
 
@@ -53,7 +55,7 @@ class Property extends Model
 
     public function preference()
     {
-        return $this->hasMany(Preferences::class, 'product_id', 'id');
+        return $this->hasMany(Preferences::class, 'property_id');
     }
 
     public function scopeMostRecent($query)

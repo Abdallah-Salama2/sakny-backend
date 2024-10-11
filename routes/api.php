@@ -33,11 +33,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('agents', AgentController::class);
     Route::resource('inquiries', InquiryController::class);
     Route::resource('preferences', PreferencesController::class);
+    Route::post('preferences/{preference}', [PreferencesController::class, "add"]);
 
 
     //Agent Properties
     Route::get('loggedInUser', [AgentController::class, 'loggedInUser']);
-    Route::get('agent/properties/{property}', [AgentPropertyController::class, 'show']);
+    Route::get('agent/properties', [AgentPropertyController::class, 'index']);
     Route::get('agent/properties/{property}', [AgentPropertyController::class, 'show']);
     Route::post('agent/properties', [AgentPropertyController::class, 'store']);
     Route::put('agent/properties/{property}', [AgentPropertyController::class, 'update']);

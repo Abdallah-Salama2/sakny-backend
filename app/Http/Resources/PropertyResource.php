@@ -10,6 +10,12 @@ class PropertyResource extends JsonResource
 {
     public function toArray($request)
     {
+        $favorite = $this->preference->pluck('id');
+        if (empty($favorite[0])) {
+            $isFavorite = 0;
+        } else {
+            $isFavorite = 1;
+        }
         return [
             'id' =>             $this->id,
             'title' =>          $this->title,
@@ -28,6 +34,8 @@ class PropertyResource extends JsonResource
             'created_at' =>     $this->created_at->toDateTimeString(),
             'updated_at' =>     $this->updated_at->toDateTimeString(),
             'preview_image_url' => $this->images->first(),
+            'favoriteStats' => $isFavorite,
+
             // Relationships
             'agent' => new AgentResource($this->whenLoaded('agent')),
             'images' => PropertyImageResource::collection($this->whenLoaded('images')),
