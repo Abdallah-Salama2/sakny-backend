@@ -36,7 +36,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
     //Agent Properties
-    Route::get('agent/properties', [AgentPropertyController::class, 'index']);
+    Route::get('loggedInUser', [AgentController::class, 'loggedInUser']);
+    Route::get('agent/properties/{property}', [AgentPropertyController::class, 'show']);
     Route::get('agent/properties/{property}', [AgentPropertyController::class, 'show']);
     Route::post('agent/properties', [AgentPropertyController::class, 'store']);
     Route::put('agent/properties/{property}', [AgentPropertyController::class, 'update']);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AgentResource;
 use App\Models\Agent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AgentController extends Controller
 {
@@ -21,9 +22,11 @@ class AgentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function loggedInUser()
     {
         //
+        $user = Auth::user();
+        return $user;
     }
 
     /**
