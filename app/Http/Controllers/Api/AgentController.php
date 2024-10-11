@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AgentResource;
 use App\Models\Agent;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,8 @@ class AgentController extends Controller
     public function show(string $id)
     {
         //
+        $agents = Agent::with(['properties'])->findOrFail($id);
+        return new AgentResource($agents);
     }
 
     /**

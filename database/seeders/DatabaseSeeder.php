@@ -13,11 +13,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create 5 agents only
-        $agents = \App\Models\Agent::factory(3)->create();
+        // $agents = \App\Models\Agent::factory(3)->create();
 
         // Create 10 users
         $clients = \App\Models\User::factory(10)->create();
         $this->call([
+            AgentSeeder::class,
             PropertySeeder::class,
             PropertyImageSeeder::class,
         ]);
