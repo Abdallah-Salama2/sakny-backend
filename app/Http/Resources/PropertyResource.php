@@ -10,11 +10,13 @@ class PropertyResource extends JsonResource
 {
     public function toArray($request)
     {
-        $favorite = $this->preference->pluck('id');
-        if (empty($favorite[0])) {
-            $isFavorite = 0;
-        } else {
-            $isFavorite = 1;
+        // Initialize favoriteStats as null or default it
+        $favoriteStats = null;
+
+        // Only check the favorite status if the user is authenticated
+        if ($request->user()) {
+            $favorite = $this->preference->pluck('id');
+            $favoriteStats = !empty($favorite[0]) ? 1 : 0;
         }
         return [
             'id' =>             $this->id,
@@ -33,9 +35,11 @@ class PropertyResource extends JsonResource
             'type' =>           $this->type,
             'created_at' =>     $this->created_at->toDateTimeString(),
             'updated_at' =>     $this->updated_at->toDateTimeString(),
-            'preview_image_url' => $this->images->first(),
-            'favoriteStats' => $isFavorite,
-
+            'preview_image  _url' => $this->images->first(),
+            // Conditionally include favoriteStats if the user is authenticated
+            $this->mergeWhen($request->user(), [
+                'favoriteStats' => $favoriteStats,
+            ]),
             // Relationships
             'agent' => new AgentResource($this->whenLoaded('agent')),
             'images' => PropertyImageResource::collection($this->whenLoaded('images')),
