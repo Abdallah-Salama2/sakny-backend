@@ -35,7 +35,7 @@ class PropertyResource extends JsonResource
             'type' =>           $this->type,
             'created_at' =>     $this->created_at->toDateTimeString(),
             'updated_at' =>     $this->updated_at->toDateTimeString(),
-            'preview_image  _url' => $this->images->first(),
+            'preview_image_url' => $this->images->first(),
             // Conditionally include favoriteStats if the user is authenticated
             $this->mergeWhen($request->user(), [
                 'favoriteStats' => $favoriteStats,
