@@ -27,10 +27,10 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('home/properties', [PropertyController::class, "index"]);
+Route::resource('agents', AgentController::class);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('users', UserController::class);
-    Route::resource('agents', AgentController::class);
     Route::resource('properties', PropertyController::class);
 
     Route::get('/properties/{property}/inquiries', [InquiryController::class, 'showInquiries']);
