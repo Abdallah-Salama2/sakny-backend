@@ -81,6 +81,9 @@ class Property extends Model
             $filters['areaFrom'] ?? false,
             fn($query, $value) => $query->where('area', '>=', $value)
         )->when(
+            $filters['address'] ?? false,
+            fn($query, $value) => $query->where('address', 'like', $value . '%')
+        )->when(
             $filters['areaTo'] ?? false,
             fn($query, $value) => $query->where('area', '<=', $value)
         )->when(

@@ -16,13 +16,12 @@ class PropertyController extends Controller
     public function index(Request $request)
     {
         // Apply filters and eager load relationships
-        $filters = $request->only(['priceFrom', 'priceTo', 'beds', 'baths', 'areaFrom', 'areaTo', 'by', 'order', 'deleted']);
+        $filters = $request->only(['priceFrom', 'priceTo', 'beds', 'baths', 'areaFrom', 'address', 'areaTo', 'by', 'order', 'deleted']);
 
         // Fetch filtered properties with agent, inquiries, images relations
         $properties = Property::with(['agent', 'inquiries', 'images'])
             ->filter($filters)
-            ->mostRecent()
-            ->paginate(10); // Add pagination
+            ->mostRecent();
 
         return PropertyResource::collection($properties);
     }
