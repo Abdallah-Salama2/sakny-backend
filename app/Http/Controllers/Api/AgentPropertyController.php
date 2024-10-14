@@ -43,7 +43,7 @@ class AgentPropertyController extends Controller
             'beds' => 'required|integer|min:1',
             'baths' => 'required|integer|min:1',
             'area' => 'required|integer|min:1',
-            'property_date' => 'required|date',
+            // 'property_date' => 'required|date',
             'price' => 'required|numeric',
             'status' => 'required|string',  // Assuming status is 'sale' or 'rent'
             'type' => 'required|string',

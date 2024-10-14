@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Scopes\FavoriteScope;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,7 +28,17 @@ class Property extends Model
     {
         return $this->belongsTo(Agent::class, 'by_agent_id');
     }
+    public static function boot()
+    {
+        parent::boot();
 
+        static::creating(function ($property) {
+            // Set the property_date to current date if it's not already set.
+            if (empty($property->property_date)) {
+                $property->property_date = Carbon::now();
+            }
+        });
+    }
     // A property can receive many inquiries
     public function inquiries()
     {
