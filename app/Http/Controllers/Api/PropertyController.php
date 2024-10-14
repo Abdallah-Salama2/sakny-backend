@@ -21,7 +21,8 @@ class PropertyController extends Controller
         // Fetch filtered properties with agent, inquiries, images relations
         $properties = Property::with(['agent', 'inquiries', 'images'])
             ->filter($filters)
-            ->mostRecent();
+            ->mostRecent()
+            ->paginate(10); // Add pagination
 
         return PropertyResource::collection($properties);
     }
