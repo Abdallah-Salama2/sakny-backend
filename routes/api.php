@@ -31,6 +31,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::get('home/properties', [PropertyController::class, "index"]);
 Route::resource('agents', AgentController::class);
 Route::get('/properties/{property}', [PropertyController::class, 'show']);
+Route::post("/search/{type}", [SearchController::class, 'search']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('users', UserController::class);
@@ -38,7 +39,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Route::get("/search/{type}/{id}",[PropertyController::class,"search"]);
 
-    Route::post("/search/{type}", [SearchController::class, 'search']);
     // Route::get("/search/{id}",[PropertyController::class,"search"]);
     Route::get('/properties/{property}/inquiries', [InquiryController::class, 'showInquiries']);
     Route::post('/properties/{property}/inquiries', [InquiryController::class, 'store']);
