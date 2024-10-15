@@ -11,7 +11,7 @@ class PropertyImageResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'image_url' => $this->src,  
+            'image_url' => $this->filename,
         ];
     }
 }

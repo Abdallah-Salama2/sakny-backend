@@ -32,7 +32,7 @@ final class UserFactory extends Factory
             'email' => fake()->safeEmail,
             'phone_number' => fake()->phoneNumber,
             'email_verified_at' => fake()->optional()->datetime(),
-            'password' => bcrypt("12345678"),
+            'password' => bcrypt("123456789"),
             'remember_token' => Str::random(10),
         ];
     }
