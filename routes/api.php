@@ -6,8 +6,10 @@ use App\Http\Controllers\Api\InquiryController;
 use App\Http\Controllers\Api\PreferencesController;
 use App\Http\Controllers\Api\PropertyController;
 use App\Http\Controllers\Api\PropertyImageController;
+use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\UserController;
 use App\Mail\testmail;
+use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +36,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('properties', PropertyController::class)->except('show');
 
+    // Route::get("/search/{type}/{id}",[PropertyController::class,"search"]);
+
+    Route::post("/search/{type}", [SearchController::class, 'search']);
+    // Route::get("/search/{id}",[PropertyController::class,"search"]);
     Route::get('/properties/{property}/inquiries', [InquiryController::class, 'showInquiries']);
     Route::post('/properties/{property}/inquiries', [InquiryController::class, 'store']);
     Route::get('/agent/inquiries', [InquiryController::class, 'getAgentPropertiesWithInquiries']);

@@ -29,12 +29,12 @@ class PropertyResource extends JsonResource
             'beds' =>           $this->beds,
             'baths' =>          $this->baths,
             'area' =>           $this->area,
-            'property_date' =>  $this->property_date->format('Y-m-d'), // Format the date properly
+            'property_date' =>  $this->property_date ? $this->property_date->format('Y-m-d') : '',
             'price' =>          $this->price,
             'status' =>         $this->status,
             'type' =>           $this->type,
-            'created_at' =>     $this->created_at->toDateTimeString(),
-            'updated_at' =>     $this->updated_at->toDateTimeString(),
+            'created_at' =>     $this->created_at ? $this->created_at->toDateTimeString() : null,
+            'updated_at' =>     $this->updated_at ? $this->updated_at->toDateTimeString() : null,
             'preview_image_url' => $this->images->first(),
             // Conditionally include favoriteStats if the user is authenticated
             $this->mergeWhen($request->user(), [
