@@ -40,16 +40,12 @@ class PropertyImageController extends Controller
 
             // Process each file
             foreach ($request->file('images') as $file) {
-                // Define the path where the file will be stored (public/images directory)
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $destinationPath = public_path('images'); // This points to the 'public/images' directory
-
-                // Move the file to public/images directory
-                $file->move($destinationPath, $filename);
+                // Store the file on the public disk
+                $path = $file->store('images', 'public');
 
                 // Save the image path to the database
                 $image = $property->images()->create([
-                    'filename' => 'images/' . $filename, // Save relative path
+                    'filename' => $path,
                 ]);
 
                 if ($image) {
