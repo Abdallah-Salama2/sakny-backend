@@ -23,13 +23,11 @@ class PropertyImageController extends Controller
     public function store(Request $request, Property $property)
     {
         // Check if files are uploaded
-        if ($request->has('images')) {
+        if ($request->hasFile('images')) {
 
-            dd($request->has('images'));
-            // Debugging - see the files being uploaded
-            // foreach ($request->file('images') as $file) {
-            //     dd($file->getClientOriginalName(), $file->getMimeType());
-            // }
+            // Debugging - check if files are being received correctly
+            // dd($request->file('images'));
+            // dd($request->file('images'));
 
             // Validation for image formats
             $request->validate([
@@ -42,11 +40,16 @@ class PropertyImageController extends Controller
 
             // Process each file
             foreach ($request->file('images') as $file) {
-                $path = $file->store('images', 'public');
+                // Define the path where the file will be stored (public/images directory)
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $destinationPath = public_path('images'); // This points to the 'public/images' directory
+
+                // Move the file to public/images directory
+                $file->move($destinationPath, $filename);
 
                 // Save the image path to the database
                 $image = $property->images()->create([
-                    'filename' => $path,
+                    'filename' => 'images/' . $filename, // Save relative path
                 ]);
 
                 if ($image) {
@@ -54,7 +57,7 @@ class PropertyImageController extends Controller
                 }
             }
 
-            // Return success response
+            // Return success response if any images were saved
             if (!empty($savedImages)) {
                 return response()->json([
                     'message' => 'Property images created successfully.',
