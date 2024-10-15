@@ -15,7 +15,7 @@ class AgentResource extends JsonResource
             'image_url' => $this->image_url,
             'name' => $this->name,
             'email' => $this->email,
-            'phone_number' => $this->phone_number,
+            'phone_number' => $this->phone,
             'properties' => PropertyResource::collection($this->whenLoaded('properties'))
         ];
     }
