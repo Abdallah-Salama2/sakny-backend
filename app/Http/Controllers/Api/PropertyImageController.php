@@ -25,9 +25,7 @@ class PropertyImageController extends Controller
         // Check if files are uploaded
         if ($request->hasFile('images')) {
 
-            // Debugging - check if files are being received correctly
-            // dd($request->file('images'));
-            // dd($request->file('images'));
+
 
             // Validation for image formats
             $request->validate([
@@ -40,12 +38,18 @@ class PropertyImageController extends Controller
 
             // Process each file
             foreach ($request->file('images') as $file) {
-                // Store the file on the public disk
-                $path = $file->store('images', 'public');
+                // Define the filename
+                $filename = time() . '_' . $file->getClientOriginalName();
+
+                // Store the file in the 'public/images' directory using the Storage facade
+                $path = $file->storeAs('public/images', $filename);
+
+                // Remove 'public/' prefix for storing the image path in the database
+                $relativePath = str_replace('public/', '', $path);
 
                 // Save the image path to the database
                 $image = $property->images()->create([
-                    'filename' => $path,
+                    'filename' => $relativePath, // Save relative path
                 ]);
 
                 if ($image) {
