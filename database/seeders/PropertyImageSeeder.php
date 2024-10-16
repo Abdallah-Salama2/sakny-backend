@@ -265,25 +265,7 @@ class PropertyImageSeeder extends Seeder
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
-            //3
-            [
-                'filename' => "https://y-sooty-seven.vercel.app/apartment-3/11.jpg",
-                'property_id' => 14,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'filename' => "https://y-sooty-seven.vercel.app/apartment-3/12.jpg",
-                'property_id' => 14,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'filename' => "https://y-sooty-seven.vercel.app/apartment-3/13.jpg",
-                'property_id' => 14,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
+
 
 
         ]);
