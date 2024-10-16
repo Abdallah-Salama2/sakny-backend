@@ -227,6 +227,63 @@ class PropertyImageSeeder extends Seeder
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
+            //1
+            [
+                'filename' => "https://y-sooty-seven.vercel.app/Apartment-1/1.png",
+                'property_id' => 12,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'filename' => "https://y-sooty-seven.vercel.app/Apartment-1/2.png",
+                'property_id' => 12,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'filename' => "https://y-sooty-seven.vercel.app/Apartment-1/3.png",
+                'property_id' => 12,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            //2
+            [
+                'filename' => "https://y-sooty-seven.vercel.app/Apartment-2/11.jpg",
+                'property_id' => 13,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'filename' => "https://y-sooty-seven.vercel.app/Apartment-2/12.jpg",
+                'property_id' => 13,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'filename' => "https://y-sooty-seven.vercel.app/Apartment-2/13.jpg",
+                'property_id' => 13,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            //3
+            [
+                'filename' => "https://y-sooty-seven.vercel.app/apartment-3/11.jpg",
+                'property_id' => 14,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'filename' => "https://y-sooty-seven.vercel.app/apartment-3/12.jpg",
+                'property_id' => 14,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'filename' => "https://y-sooty-seven.vercel.app/apartment-3/13.jpg",
+                'property_id' => 14,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
 
 
         ]);

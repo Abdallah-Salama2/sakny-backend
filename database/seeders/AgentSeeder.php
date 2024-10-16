@@ -40,6 +40,30 @@ class AgentSeeder extends Seeder
                 'password' => bcrypt("123456789"),
                 'remember_token' => Str::random(10),
             ],
+            [
+                'name' => "Abdallah Fawzi",
+                'image_url' => "https://y-sooty-seven.vercel.app/AgentProfiles/Abdallah.jpg",
+                'email' => "Abdallah@gmail.com",
+                'phone' => fake()->phoneNumber,
+                'password' => bcrypt("123456789"),
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => "Mohammed Mamdouh",
+                'image_url' => "https://y-sooty-seven.vercel.app/AgentProfiles/mohamed.jpg",
+                'email' => "Mohammed@gmail.com",
+                'phone' => fake()->phoneNumber,
+                'password' => bcrypt("123456789"),
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => "Aly Assem",
+                'image_url' => "https://y-sooty-seven.vercel.app/AgentProfiles/aly.PNG",
+                'email' => "Aly@gmail.com",
+                'phone' => fake()->phoneNumber,
+                'password' => bcrypt("123456789"),
+                'remember_token' => Str::random(10),
+            ],
 
         ]);
 
