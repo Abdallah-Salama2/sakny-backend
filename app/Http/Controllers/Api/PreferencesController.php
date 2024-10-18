@@ -68,7 +68,7 @@ class PreferencesController extends Controller
 
             return response()->json([
                 'message' => 'Property removed from Favorites.',
-            ], 409);
+            ]);
         }
 
         Preferences::create([
@@ -82,7 +82,7 @@ class PreferencesController extends Controller
 
         return response()->json([
             'message' => 'Property Added To Favorites ',
-        ], 200);
+        ]);
     }
 
 
